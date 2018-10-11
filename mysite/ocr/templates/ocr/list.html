@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <meta charset="utf-8">
+                <title>OCR</title>
+        </head>
+        <body>
+                <!-- List of uploaded documents -->
+                {% if data  and documents %}
+                        <ul>
+                                <img src="{{ documents.docfile.url }}" alt="{{ documents.docfile.name }}">
+                                <h4><strong>Text: </strong> <br />{{ data }}</h4>
+                        </ul>
+                {% else %}
+                        <p>No documents.</p>
+                {% endif %}
+
+                <!-- Upload form. Note enctype attribute! -->
+                <form action="{% url "list" %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <p>{{ form.non_field_errors }}</p>
+                        <p>{{ form.docfile.label_tag }} </p>
+                        <p>
+                                {{ form.docfile.errors }}
+                                {{ form.docfile }}
+                        </p>
+                        <p><input type="submit" value="Upload" /></p>
+                </form>
+        </body>
+
+</html>
