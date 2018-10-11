@@ -1,1 +1,0 @@
-# Spice_Tech_India
